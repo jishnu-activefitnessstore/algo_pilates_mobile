@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:algo_pilates/src/features/classes/provider/class_provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -220,8 +221,8 @@ class MyAppState extends State<MyApp> {
             unselectedItemColor: Colors.white.withValues(alpha: 0.6),
             showUnselectedLabels: true,
             showSelectedLabels: true,
-            selectedLabelStyle: AppStyles.getBoldTextStyle(fontSize: 14),
-            unselectedLabelStyle: AppStyles.getRegularTextStyle(fontSize: 14),
+            selectedLabelStyle: AppStyles.getBoldTextStyle(fontSize: 13),
+            unselectedLabelStyle: AppStyles.getRegularTextStyle(fontSize: 13),
           ),
           pageTransitionsTheme: const PageTransitionsTheme(
             builders: <TargetPlatform, PageTransitionsBuilder>{
@@ -250,7 +251,7 @@ class MyAppState extends State<MyApp> {
                 // ChangeNotifierProvider<AuthProvider>(create: (context) => AuthProvider(token: token)),
                 // ChangeNotifierProvider<UserProvider>(create: (context) => UserProvider()),
                 ChangeNotifierProvider<HomeProvider>(create: (context) => HomeProvider()),
-                // ChangeNotifierProvider<LocationServices>(create: (context) => LocationServices()),
+                ChangeNotifierProvider<ClassProvider>(create: (context) => ClassProvider()),
                 // ChangeNotifierProvider<ApprovalProvider>(create: (context) => ApprovalProvider()),
                 // ChangeNotifierProvider<RequestProvider>(create: (context) => RequestProvider()),
               ],

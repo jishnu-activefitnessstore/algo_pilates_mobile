@@ -1,9 +1,6 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:algo_pilates/src/features/home/models/team_model.dart';
+import 'package:algo_pilates/src/features/home/presentation/widget/custom_html_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 import '../../../utilities/utilities.dart';
 import 'widget/custom_scaffold.dart';
@@ -35,14 +32,14 @@ class _TeamsViewState extends State<TeamsView> {
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
-          SliverToBoxAdapter(child: TitleBox(title: "Our Team", subtitle: "Home > Our Team")),
+          // SliverToBoxAdapter(child: TitleBox(title: "Our Team", subtitle: "Home > Our Team")),
           SliverPadding(
             padding: kDefaultPadding,
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 Text(teamJson['title'], style: AppStyles.getSemiBoldTextStyle(fontSize: 32)),
                 const SizedBox(height: 24),
-                HtmlWidget(teamJson['description'], textStyle: AppStyles.getRegularTextStyle(fontSize: 16)),
+                CustomHtmlWidget(htmlString: teamJson['description']),
                 const SizedBox(height: 30),
                 SizedBox(
                   height: 100,

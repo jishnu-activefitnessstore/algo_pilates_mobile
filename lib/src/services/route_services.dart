@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:algo_pilates/src/features/classes/presentation/class_details_view.dart';
+import 'package:algo_pilates/src/features/classes/presentation/class_listitng_view.dart';
 import 'package:algo_pilates/src/features/connectivity/presentation/no_internet_view.dart';
 import 'package:algo_pilates/src/features/home/presentation/bookings_view.dart';
+import 'package:algo_pilates/src/features/home/presentation/contact_view.dart';
 import 'package:algo_pilates/src/features/home/presentation/pricing_view.dart';
 import 'package:algo_pilates/src/features/home/presentation/teams_view.dart';
 import 'package:algo_pilates/src/features/splash/presentation/splash_screen_view.dart';
@@ -43,6 +46,23 @@ final route = GoRouter(
           pageBuilder: (context, state) => getCustomTransition(state, BookingsView()),
         ),
         GoRoute(path: TeamsView.route, name: TeamsView.route, pageBuilder: (context, state) => getCustomTransition(state, TeamsView())),
+        GoRoute(
+          path: ContactView.route,
+          name: ContactView.route,
+          pageBuilder: (context, state) => getCustomTransition(state, ContactView()),
+        ),
+        GoRoute(
+          path: ClassListitngView.route,
+          name: ClassListitngView.route,
+          pageBuilder: (context, state) => getCustomTransition(state, ClassListitngView()),
+          routes: [
+            GoRoute(
+              path: ":id",
+              name: ClassDetailsView.route,
+              pageBuilder: (context, state) => getCustomTransition(state, ClassDetailsView(id: state.pathParameters['id']!)),
+            ),
+          ],
+        ),
       ],
     ),
   ],

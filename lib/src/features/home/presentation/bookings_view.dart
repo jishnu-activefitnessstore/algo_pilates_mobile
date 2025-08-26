@@ -1,4 +1,4 @@
-import 'package:algo_pilates/src/services/api_services.dart';
+import 'package:algo_pilates/src/features/home/presentation/widget/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -26,7 +26,9 @@ class _BookingsViewState extends State<BookingsView> {
               onProgress: (int progress) {
                 // Update loading bar.
               },
-              onPageStarted: (String url) {},
+              onPageStarted: (String url) {
+                print(url);
+              },
               onPageFinished: (String url) {},
               onHttpError: (HttpResponseError error) {},
               onWebResourceError: (WebResourceError error) {},
@@ -57,6 +59,7 @@ class _BookingsViewState extends State<BookingsView> {
       path: BookingsView.route,
       showBookNow: false,
       scrollController: _scrollController,
+      bottomNavigationBar: Container(color: Colors.black, child: PlainNavBar(currentPath: BookingsView.route)),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return WebViewWidget(controller: controller);

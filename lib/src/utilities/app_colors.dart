@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const Color primaryColor = Color(0xff0816FD);
   static const Color secondaryColor = Color(0xFF01050e);
+  static const Color secondaryBlue = Color(0xFF040C85);
   static const Color lightColor = Color(0xFFF1E2D5);
+
+  static const Color whatsapp = Color(0xFF198754);
 
   static const Color iconColor = Colors.black;
   static const Color unselectedColor = Color(0xff9CA3AF);
@@ -46,6 +49,11 @@ class AppColors {
       Color(0xFFEDEDED),
       Color.fromARGB(0, 224, 224, 224), // hsla(0, 0%, 88%, 0) equivalent
     ],
+  );
+
+  static const LinearGradient bottomBarGradient = LinearGradient(
+    colors: [Colors.black, Color(0xff040C85), Colors.black],
+    stops: [0, 0.52, 1],
   );
 
   static const MaterialColor primarySwatch = MaterialColor(0xFFF8F8F8, <int, Color>{

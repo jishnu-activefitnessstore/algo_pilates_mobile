@@ -34,7 +34,7 @@ class AppStyles {
       backgroundColor: backgroundColor ?? AppColors.primaryColor,
       foregroundColor: foregroundColor ?? Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-      padding: padding ?? EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      padding: padding ?? EdgeInsets.all(8),
     );
   }
 

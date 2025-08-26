@@ -143,3 +143,11 @@ extension DoubleRounding on double {
     return (this * mod).roundToDouble() / mod;
   }
 }
+
+String normalizeVersion(String version) {
+  final parts = version.split('.');
+  while (parts.length < 3) {
+    parts.add('0');
+  }
+  return parts.join('.');
+}

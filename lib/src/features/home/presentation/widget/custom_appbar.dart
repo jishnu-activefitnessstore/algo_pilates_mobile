@@ -27,18 +27,19 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (showBookNow)
           TextButton(
-            style: AppStyles.filledButton(padding: const EdgeInsets.all(8)),
+            style: AppStyles.filledButton(),
             onPressed: () {
               context.pushNamed(BookingsView.route);
             },
             child: Row(
               children: [
-                Text("Book Now", style: AppStyles.getBoldTextStyle(fontSize: 14)),
+                Text("\t\t\t\tBook Now", style: AppStyles.getBoldTextStyle(fontSize: 14)),
                 const SizedBox(width: 8),
                 const CircleAvatar(radius: 15, backgroundColor: Colors.white, child: Icon(Icons.arrow_right_alt)),
               ],
             ),
           ),
+        SizedBox(width: 16),
       ],
     );
   }
