@@ -1,0 +1,66 @@
+{
+    "title": "Our Classes",
+    "description": null,
+    "classes": [
+      {
+        "id": 1,
+        "banner": "https://algopilates.com/assets/image/movement-principles.jpg",
+        "title": "Movement Principles",
+        "description":
+            "From foundational control to high-performance training, each class is uniquely designed to elevate your Pilates experience. Whether you're just starting or advancing your practice, our signature formats help you build strength, balance, flexibility, and focus—one movement at a time.",
+        "studio_location": {
+          "name": "Algo Pilates",
+          "image": "https://images.activefitnessstore.com/assets/stores/al_quos_sheikh_zayed_road_uae.jpg",
+          "phone": "+971 54 581 6298",
+          "address": "Mezzanine Floor, Junction Mall DIP, Dubai.",
+          "map": "https://maps.app.goo.gl/shnPLvW85QWTXfX27"
+        },
+        "gallery": [
+          "https://algopilates.com/assets/image/movement-principles.jpg",
+          "https://algopilates.com/assets/image/movement-principles.jpg",
+          "https://algopilates.com/assets/image/movement-principles.jpg",
+          "https://algopilates.com/assets/image/movement-principles.jpg"
+        ]
+      },
+      {
+        "id": 2,
+        "banner": "https://algopilates.com/assets/image/athletic-reformer.jpg",
+        "title": "Athletic Reformer",
+        "description":
+            "From foundational control to high-performance training, each class is uniquely designed to elevate your Pilates experience. Whether you're just starting or advancing your practice, our signature formats help you build strength, balance, flexibility, and focus—one movement at a time.",
+        "studio_location": {
+          "name": "Algo Pilates",
+          "image": "https://images.activefitnessstore.com/assets/stores/al_quos_sheikh_zayed_road_uae.jpg",
+          "phone": "+971 54 581 6298",
+          "address": "Mezzanine Floor, Junction Mall DIP, Dubai.",
+          "map": "https://maps.app.goo.gl/shnPLvW85QWTXfX27"
+        },
+        "gallery": [
+          "https://algopilates.com/assets/image/athletic-reformer.jpg",
+          "https://algopilates.com/assets/image/athletic-reformer.jpg",
+          "https://algopilates.com/assets/image/athletic-reformer.jpg",
+          "https://algopilates.com/assets/image/athletic-reformer.jpg"
+        ]
+      },
+      {
+        "id": 3,
+        "banner": "https://algopilates.com/assets/image/athletic-flow.jpg",
+        "title": "Athletic Flow",
+        "description":
+            "From foundational control to high-performance training, each class is uniquely designed to elevate your Pilates experience. Whether you're just starting or advancing your practice, our signature formats help you build strength, balance, flexibility, and focus—one movement at a time.",
+        "studio_location": {
+          "name": "Algo Pilates",
+          "image": "https://images.activefitnessstore.com/assets/stores/al_quos_sheikh_zayed_road_uae.jpg",
+          "phone": "+971 54 581 6298",
+          "address": "Mezzanine Floor, Junction Mall DIP, Dubai.",
+          "map": "https://maps.app.goo.gl/shnPLvW85QWTXfX27"
+        },
+        "gallery": [
+          "https://algopilates.com/assets/image/athletic-reformer.jpg",
+          "https://algopilates.com/assets/image/athletic-reformer.jpg",
+          "https://algopilates.com/assets/image/athletic-reformer.jpg",
+          "https://algopilates.com/assets/image/athletic-reformer.jpg"
+        ]
+      }
+    ]
+  }

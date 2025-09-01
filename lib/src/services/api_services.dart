@@ -1,15 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
-
-import '../utilities/utilities.dart';
 
 class ApiServices {
-  static const String baseUrl = 'https://empapi.afsdev.in/api';
-  static const String whatsapp = '971503145585';
+  static const String jsonBaseUrl = 'https://algopilates.com/assets/js';
+  // static const String whatsapp = '971503145585';
 
   static Map<String, String> headers = {'Content-Type': 'application/json', 'Accept': 'application/json'};
 
@@ -27,6 +23,12 @@ class ApiServices {
   //   log("login ${response.statusCode}");
   //   return getResponseBody(response);
   // }
+  Future<dynamic> getJsonFromUrl(String name) async {
+    http.Response response = await http.get(Uri.parse('$jsonBaseUrl/$name.json'), headers: headers);
+    log("getJsonFromUrl ${response.statusCode}");
+    return jsonDecode(response.body);
+    // return getResponseBody(response);
+  }
 
   // Future<Map<String, dynamic>> getResponseBody(http.StreamedResponse response) async {
   //   // bool userDataFirstTime = navigatorKey.currentContext!.read<UserProvider>().userModel == null;

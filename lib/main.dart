@@ -234,6 +234,9 @@ class MyAppState extends State<MyApp> {
             rangePickerHeaderBackgroundColor: AppColors.primaryColor,
             rangePickerHeaderForegroundColor: Colors.white,
           ),
+          // textTheme: Theme.of(context).textTheme.apply(
+          //   bodyColor: AppColors.textColor, // Color for body text
+          // ),
         ),
 
         // routing

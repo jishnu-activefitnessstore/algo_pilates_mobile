@@ -2,11 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:algo_pilates/src/features/home/presentation/home_view.dart';
+import 'package:algo_pilates/src/features/home/provider/home_provider.dart';
 import 'package:algo_pilates/src/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,21 +29,23 @@ class _SplashScreenViewState extends State<SplashScreenView> {
 
   void _navigateAfterDelay() async {
     final stopwatch = Stopwatch()..start();
-    // TODO: Change to homeJson from web
+
+    final provider = context.read<HomeProvider>();
+    await provider.getJsons();
     try {
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       String version = packageInfo.version;
-      final String androidVersion = homeJson['version']['android_version'];
-      final String iosVersion = homeJson['version']['ios_version'];
+      final String androidVersion = provider.homeModel.version!.androidVersion!;
+      final String iosVersion = provider.homeModel.version!.iosVersion!;
       final currentAndroidVersion = Version.parse(normalizeVersion(androidVersion));
       final currentiOSVersion = Version.parse(normalizeVersion(iosVersion));
       final latestVersion = Version.parse(version);
 
       if (Platform.isAndroid && currentAndroidVersion > latestVersion) {
-        await showVersionAlertDialog(homeJson['version']['isAndroidUpdateMandatory']);
+        await showVersionAlertDialog(provider.homeModel.version!.isAndroidUpdateMandatory!);
       }
       if (Platform.isIOS && currentiOSVersion > latestVersion) {
-        await showVersionAlertDialog(homeJson['version']['isIosUpdateMandatory']);
+        await showVersionAlertDialog(provider.homeModel.version!.isIosUpdateMandatory!);
       }
     } catch (e) {
       print(e);

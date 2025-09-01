@@ -1,0 +1,31 @@
+{
+    "title": "Meet Our Team",
+    "description":
+        "<p>We have united the world’s most engaging and highly-skilled Reformer Pilates trainers, committed to helping you find your greatness. Each has been hand-picked for their unique flair and passion. Let them be your guides on this Reformer Pilates journey, with our Reformer Pilates studios becoming your destination for change.</p>",
+    "members": [
+      {
+        "name": "Anesti Mano",
+        "image": "https://algopilates.com/assets/image/anesti.jpg",
+        "desc":
+            "Anesti Mano is an internationally renowned Pilates educator, NPCP-certified instructor, and natural bodybuilding athlete with a deep background in strength training and competitive men’s physique in Greece and Dubai."
+      },
+      {
+        "name": "Ruth Lim",
+        "image": "https://algopilates.com/assets/image/ruth-lim.jpg",
+        "desc":
+            "A proud mother of two. It takes a year of ‘scooping in’ ‘lengthening’ ‘conscious breathing’ ‘stabilize your pelvis’ to resolving my diastasis recti, mild scoliosis induced sore back, incontinence. A classical Pilates student, still is!!! Constantly diving deeper into the method and a Polestar certified instructor. Love the positive movement experience First, you control.. then you flow .."
+      },
+      {
+        "name": "Grace Rogers",
+        "image": "https://algopilates.com/assets/image/grace.jpg",
+        "desc":
+            "Grace is a Polestar-trained Reformer Pilates instructor with a decade-long background in marketing, client relations, and strategic communication. Now fully immersed in the world of Pilates, she brings her professional experience and people-first mindset to the studio—creating a welcoming, empowering space for all bodies and fitness level"
+      },
+      {
+        "name": "Yoojin Kim",
+        "image": "https://algopilates.com/assets/image/yoojin.jpg",
+        "desc":
+            "Yoojin teaches Pilates with a contemporary approach, incorporating the mat, Reformer, Trapeze Table, Chair, and Ladder Barrel. She specializes in pain management and posture correction, tailoring each session to individual needs. Her focus is on helping clients develop body awareness in a motivating and supportive environment—ensuring they enjoy both the workout and the journey toward better movement and well-being."
+      }
+    ]
+  }

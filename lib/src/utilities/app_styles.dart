@@ -5,27 +5,27 @@ import 'app_colors.dart';
 class AppStyles {
   //  Text Styles
   static TextStyle getExtraLightTextStyle({required double fontSize, Color? color, bool isCurrency = false}) {
-    return TextStyle(fontSize: fontSize, fontFamily: "Poppins", color: color, fontWeight: FontWeight.w200);
+    return TextStyle(fontSize: fontSize, fontFamily: "Vazirmatn", color: color, fontWeight: FontWeight.w200);
   }
 
   static TextStyle getLightTextStyle({required double fontSize, Color? color, bool isCurrency = false}) {
-    return TextStyle(fontSize: fontSize, fontFamily: "Poppins", color: color, fontWeight: FontWeight.w300);
+    return TextStyle(fontSize: fontSize, fontFamily: "Vazirmatn", color: color, fontWeight: FontWeight.w300);
   }
 
   static TextStyle getRegularTextStyle({required double fontSize, Color? color, bool isCurrency = false}) {
-    return TextStyle(fontSize: fontSize, fontFamily: "Poppins", color: color, fontWeight: FontWeight.w400, height: 1.7);
+    return TextStyle(fontSize: fontSize, fontFamily: "Vazirmatn", color: color, fontWeight: FontWeight.w400, height: 1.7);
   }
 
   static TextStyle getBoldTextStyle({required double fontSize, Color? color, bool isCurrency = false}) {
-    return TextStyle(fontSize: fontSize, fontFamily: "Poppins", fontWeight: FontWeight.w700, color: color);
+    return TextStyle(fontSize: fontSize, fontFamily: "Vazirmatn", fontWeight: FontWeight.w700, color: color);
   }
 
   static TextStyle getSemiBoldTextStyle({required double fontSize, Color? color, bool isCurrency = false}) {
-    return TextStyle(fontSize: fontSize, fontFamily: "Poppins", fontWeight: FontWeight.w600, color: color);
+    return TextStyle(fontSize: fontSize, fontFamily: "Vazirmatn", fontWeight: FontWeight.w600, color: color);
   }
 
   static TextStyle getMediumTextStyle({required double fontSize, Color? color, bool isCurrency = false}) {
-    return TextStyle(fontSize: fontSize, fontFamily: "Poppins", fontWeight: FontWeight.w500, color: color);
+    return TextStyle(fontSize: fontSize, fontFamily: "Vazirmatn", fontWeight: FontWeight.w500, color: color);
   }
 
   // Button styles

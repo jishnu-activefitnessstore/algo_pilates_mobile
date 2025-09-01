@@ -16,7 +16,7 @@ class AppColors {
   static const Color authButtonColor = Color(0xFFF2F3F6);
 
   static const Color backgroundColor = Color(0xffF0F0F0);
-  static const Color textColor = Color(0xFF000000);
+  static const Color textColor = Color(0xFF595959);
   static const Color textLinkColor = Color(0xff116DA1);
 
   static const Color shadowColor = Color(0xffDFDFDF);

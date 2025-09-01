@@ -20,18 +20,6 @@ class AppImages {
   static const String whatsapp = 'assets/svg/whatsapp-brands-solid-full.svg';
 
   // static const String banner = 'assets/images/mob-banne.jpg';
-  static const String banner = 'assets/images/main-banner-mob 1.png';
-
-  static const String homeImage1 = 'assets/images/Reformer-gym-vibes.jpg';
-  static const String homeImage2 = 'assets/images/movement-principles.jpg';
-  static const String homeImage3 = 'assets/images/athletic-reformer.jpg';
-  static const String homeImage4 = 'assets/images/athletic-flow.jpg';
-
-  static const String anesti = 'assets/images/anesti.jpg';
-  static const String grace = 'assets/images/grace.jpg';
-  static const String ruth = 'assets/images/ruth-lim.jpg';
-  static const String yoojin = 'assets/images/yoojin.jpg';
-
   static String randomWomenProfileImage(int i) => 'https://randomuser.me/api/portraits/women/$i.jpg';
   static String randomMenProfileImage(int i) => 'https://randomuser.me/api/portraits/men/$i.jpg';
 }

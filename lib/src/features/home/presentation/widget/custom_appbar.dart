@@ -23,20 +23,30 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       surfaceTintColor: AppColors.secondaryColor,
       elevation: 0,
-      title: Row(children: [SvgPicture.asset(AppImages.logoSvg, height: 30, alignment: Alignment.centerLeft)]),
+      title: Row(children: [SvgPicture.asset(AppImages.logoSvg, height: 29, alignment: Alignment.centerLeft)]),
       actions: [
         if (showBookNow)
-          TextButton(
-            style: AppStyles.filledButton(),
-            onPressed: () {
-              context.pushNamed(BookingsView.route);
-            },
-            child: Row(
-              children: [
-                Text("\t\t\t\tBook Now", style: AppStyles.getBoldTextStyle(fontSize: 14)),
-                const SizedBox(width: 8),
-                const CircleAvatar(radius: 15, backgroundColor: Colors.white, child: Icon(Icons.arrow_right_alt)),
-              ],
+          SizedBox(
+            height: 35,
+            child: TextButton(
+              style: AppStyles.filledButton(padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0)),
+              onPressed: () {
+                context.pushNamed(BookingsView.route);
+              },
+              child: Row(
+                children: [
+                  Transform.translate(
+                    offset: Offset(0, 1),
+                    child: Text("\t\tBook Now", style: AppStyles.getRegularTextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(width: 8),
+                  CircleAvatar(
+                    radius: 12,
+                    backgroundColor: Colors.white,
+                    child: SvgPicture.asset(AppImages.rightArrowSvg, height: 15, width: 15),
+                  ),
+                ],
+              ),
             ),
           ),
         SizedBox(width: 16),
@@ -45,5 +55,5 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(56);
+  Size get preferredSize => const Size.fromHeight(60);
 }

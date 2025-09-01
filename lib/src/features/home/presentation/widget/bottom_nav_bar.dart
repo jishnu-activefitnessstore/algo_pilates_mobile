@@ -47,7 +47,7 @@ class PlainNavBarState extends State<PlainNavBar> {
     return BottomNavigationBar(
       // backgroundColor: Colors.transparent,
       type: BottomNavigationBarType.fixed,
-      iconSize: 25,
+      iconSize: 23,
       elevation: 0,
       items: [
         BottomNavigationBarItem(icon: getIcon(AppImages.team), label: "TEAM"),
@@ -62,7 +62,7 @@ class PlainNavBarState extends State<PlainNavBar> {
   }
 
   Widget getIcon(String icon) {
-    return Padding(padding: EdgeInsets.symmetric(vertical: 4), child: SvgPicture.asset(icon, color: Colors.white, height: 25, width: 25));
+    return Padding(padding: EdgeInsets.symmetric(vertical: 4), child: SvgPicture.asset(icon, color: Colors.white, height: 23, width: 23));
   }
 
   int getCurrentIndex() => switch (widget.currentPath) {

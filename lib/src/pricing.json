@@ -1,0 +1,76 @@
+{
+  "title": "Price & Packages ",
+  "description": "</p>To get more details about our price and packages, please contact our studio</p>",
+  "classes": [
+    {
+      "name": "Group Class",
+      "pricing": [
+        {
+          "name": "Single Class",
+          "price": 195.0,
+          "time_period": "7 Days",
+          "features": ["1 group session", "Certified trainer", "Access to any open class"]
+        },
+        {
+          "name": "5 Class Pack",
+          "price": 895.0,
+          "time_period": "20 Days",
+          "features": ["5 group sessions", "Flexible timing", "Beginner to advanced levels"]
+        },
+        {
+          "name": "10 Class Pack",
+          "price": 1695.0,
+          "time_period": "30 Days",
+          "features": ["10 sessions", "Priority booking", "Free guest pass"]
+        },
+        {
+          "name": "15 Class Pack",
+          "price": 2295.0,
+          "time_period": "45 Days",
+          "features": ["15 sessions", "Progress tracking", "Water & towel service"]
+        },
+        {
+          "name": "20 Class Pack",
+          "price": 2895.0,
+          "time_period": "45 Days",
+          "features": ["20 sessions", "Extended booking window", "2 free guest passes"]
+        },
+        {
+          "name": "Monthly Membership",
+          "price": 3995.0,
+          "time_period": "30 Days",
+          "features": ["Unlimited classes", "VIP access", "10% off in-studio purchases"]
+        }
+      ]
+    },
+    {
+      "name": "Private Training Packages",
+      "pricing": [
+        {
+          "name": "Private - Single Class",
+          "price": 495.0,
+          "time_period": "7 Days",
+          "features": ["1 private session", "Certified personal trainer", "Tailored to your goals"]
+        },
+        {
+          "name": "Private - 5 Class Pack",
+          "price": 2295.0,
+          "time_period": "15 Days",
+          "features": ["5 private sessions", "One-on-one coaching", "Flexible schedule"]
+        },
+        {
+          "name": "Private - 10 Class Pack",
+          "price": 3995.0,
+          "time_period": "20 Days",
+          "features": ["10 private sessions", "Dedicated personal trainer", "Progress tracking included"]
+        },
+        {
+          "name": "Private - 20 Class Pack",
+          "price": 6995.0,
+          "time_period": "35 Days",
+          "features": ["20 private sessions", "Comprehensive goal plan", "Priority scheduling"]
+        }
+      ]
+    }
+  ]
+}
