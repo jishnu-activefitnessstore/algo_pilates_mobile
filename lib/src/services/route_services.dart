@@ -21,15 +21,15 @@ final route = GoRouter(
   initialLocation: "/splash",
   routes: [
     GoRoute(
+      path: '/${SplashScreenView.route}',
+      name: SplashScreenView.route,
+      pageBuilder: (context, state) => getCustomTransition(state, SplashScreenView()),
+    ),
+    GoRoute(
       path: HomeView.route,
       name: HomeView.route,
       pageBuilder: (context, state) => getCustomTransition(state, const HomeView()),
       routes: [
-        GoRoute(
-          path: SplashScreenView.route,
-          name: SplashScreenView.route,
-          pageBuilder: (context, state) => getCustomTransition(state, SplashScreenView()),
-        ),
         GoRoute(
           path: NoInternetView.route,
           name: NoInternetView.route,

@@ -1,3 +1,4 @@
+import 'package:algo_pilates/src/features/home/presentation/pricing_view.dart';
 import 'package:algo_pilates/src/features/home/provider/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -40,7 +41,7 @@ class ClassBanner extends StatelessWidget {
                   onPressed: () {
                     launchUrl(
                       Uri.parse(
-                        "https://api.whatsapp.com/send/?phone=${context.read<HomeProvider>().contactModel.whatsapp!.whatsappNo}&text=Hello, I am interested in registering for Pilates class}&type=phone_number&app_absent=0",
+                        "https://api.whatsapp.com/send/?phone=${context.read<HomeProvider>().contactModel.whatsapp!.whatsappNo}&text=Hello, I am interested in registering for Pilates class&type=phone_number&app_absent=0",
                       ),
                     );
                   },
@@ -66,7 +67,7 @@ class ClassBanner extends StatelessWidget {
                 child: TextButton(
                   style: AppStyles.filledButton(),
                   onPressed: () {
-                    context.pushNamed(BookingsView.route);
+                    context.pushNamed(PricingView.route);
                   },
                   child: Row(
                     children: [

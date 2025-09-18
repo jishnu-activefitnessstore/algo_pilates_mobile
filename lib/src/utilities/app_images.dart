@@ -13,6 +13,8 @@ class AppImages {
   static const String bookings = 'assets/svg/booking.svg';
   static const String team = 'assets/svg/team.svg';
   static const String contact = 'assets/svg/contactus.svg';
+  static const String classSvg = 'assets/svg/class.svg';
+  static const String google = 'assets/svg/googl-icon.svg';
 
   static const String phone = 'assets/svg/phone-solid-full.svg';
   static const String email = 'assets/svg/envelope-regular-full.svg';

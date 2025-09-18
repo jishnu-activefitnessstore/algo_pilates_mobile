@@ -6,6 +6,9 @@ class HomeModel {
   String? highlights;
   bool? showClasses;
   String? classesTitle;
+  String? bookingUrl;
+  SplashData? splashData;
+  YoutubeData? youtubeUrl;
 
   HomeModel({this.version, this.topBanner, this.description, this.descImage, this.highlights, this.showClasses, this.classesTitle});
 
@@ -17,6 +20,9 @@ class HomeModel {
     highlights = json['highlights'];
     showClasses = json['show_classes'];
     classesTitle = json['classes_title'];
+    bookingUrl = json['booking_url'];
+    splashData = json['splash_data'] != null ? SplashData.fromJson(json['splash_data']) : null;
+    youtubeUrl = json['youtube'] != null ? YoutubeData.fromJson(json['youtube']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +47,8 @@ class Version {
   String? iosVersion;
   bool? isAndroidUpdateMandatory;
   bool? isIosUpdateMandatory;
+  String? androidLink;
+  String? iosLink;
 
   Version({this.androidVersion, this.iosVersion, this.isAndroidUpdateMandatory, this.isIosUpdateMandatory});
 
@@ -49,6 +57,8 @@ class Version {
     iosVersion = json['ios_version'];
     isAndroidUpdateMandatory = json['isAndroidUpdateMandatory'];
     isIosUpdateMandatory = json['isIosUpdateMandatory'];
+    androidLink = json['android_link'];
+    iosLink = json['ios_link'];
   }
 
   Map<String, dynamic> toJson() {
@@ -57,6 +67,26 @@ class Version {
     data['ios_version'] = iosVersion;
     data['isAndroidUpdateMandatory'] = isAndroidUpdateMandatory;
     data['isIosUpdateMandatory'] = isIosUpdateMandatory;
+    return data;
+  }
+}
+
+class SplashData {
+  String? mediaUrl;
+  String? type;
+  bool? isMuted;
+
+  SplashData({this.mediaUrl, this.type, this.isMuted = true});
+  SplashData.fromJson(Map<String, dynamic> json) {
+    mediaUrl = json['media_url'];
+    type = json['media_type'];
+    isMuted = json['is_muted'] == true;
+  }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['media_url'] = mediaUrl;
+    data['media_type'] = type;
+    data['is_muted'] = isMuted;
     return data;
   }
 }
@@ -79,6 +109,27 @@ class TopBanner {
     data['image_url'] = imageUrl;
     data['title'] = title;
     data['showBookNow'] = showBookNow;
+    return data;
+  }
+}
+
+class YoutubeData {
+  String? title;
+  String? mediaUrl;
+  String? thumbnailUrl;
+
+  YoutubeData({this.mediaUrl, this.thumbnailUrl});
+  YoutubeData.fromJson(Map<String, dynamic> json) {
+    mediaUrl = json['media_url'];
+    thumbnailUrl = json['thumbnail_url'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['media_url'] = mediaUrl;
+    data['thumbnail_url'] = thumbnailUrl;
+    data['title'] = title;
     return data;
   }
 }

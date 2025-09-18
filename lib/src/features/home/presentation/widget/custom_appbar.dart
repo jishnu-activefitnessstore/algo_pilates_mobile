@@ -1,19 +1,17 @@
 import 'package:algo_pilates/src/features/home/presentation/bookings_view.dart';
+import 'package:algo_pilates/src/features/home/provider/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../utilities/utilities.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppbar({
-    super.key,
-    required this.showBookNow,
-    required this.opacity, // NEW
-  });
+  const CustomAppbar({super.key, required this.showBookNow, required this.opacity});
 
   final bool showBookNow;
-  final double opacity; // NEW
+  final double opacity;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             child: TextButton(
               style: AppStyles.filledButton(padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0)),
               onPressed: () {
-                context.pushNamed(BookingsView.route);
+                final url = context.read<HomeProvider>().homeModel?.bookingUrl;
+                if (url != null && url.isNotEmpty && Uri.tryParse(url)?.hasAbsolutePath == true) {
+                  context.pushNamed(BookingsView.route);
+                  return;
+                }
+                context.pushNamed(url!);
               },
               child: Row(
                 children: [

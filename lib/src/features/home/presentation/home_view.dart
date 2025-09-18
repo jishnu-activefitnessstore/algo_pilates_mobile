@@ -1,18 +1,14 @@
-import 'dart:async';
-import 'dart:math' as math;
-import 'dart:ui';
 import 'package:algo_pilates/src/features/classes/presentation/class_listitng_view.dart';
 import 'package:algo_pilates/src/features/classes/provider/class_provider.dart';
 import 'package:algo_pilates/src/features/home/presentation/widget/custom_scaffold.dart';
 import 'package:algo_pilates/src/features/home/provider/home_provider.dart';
-import 'package:algo_pilates/src/services/api_services.dart';
 import 'package:algo_pilates/src/utilities/utilities.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../classes/models/class_models.dart';
 import '../../classes/presentation/class_details_view.dart';
@@ -33,23 +29,41 @@ class _HomeViewState extends State<HomeView> {
   // int currentIndex = 0;
   // late Timer _timer;
   PageController pageController = PageController(viewportFraction: 0.75);
+  YoutubePlayerController? _videoPlayerController;
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       context.read<ClassProvider>().getClasses();
+      final youtube = context.read<HomeProvider>().homeModel?.youtubeUrl;
+      print("youtube: ${youtube?.mediaUrl}");
+      if (youtube != null) {
+        final fixedUrl = normalizeYoutubeUrl(youtube.mediaUrl!);
+
+        final controller = YoutubePlayerController(
+          initialVideoId: youtube.mediaUrl!,
+          flags: YoutubePlayerFlags(autoPlay: false, mute: false),
+        );
+
+        if (mounted) {
+          setState(() {
+            _videoPlayerController = controller;
+          });
+        }
+      }
     });
-    // currentIndex = 999;
-    // if (homeJson['slider'].length > 1) {
-    //   _timer = Timer.periodic(const Duration(seconds: 4), (_) {
-    //     // if (currentIndex == homeJson['slider'].length - 1) {
-    //     // currentIndex++;
-    //     _pageController.animateToPage(currentIndex + 1, duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
-    //     // } else {
-    //     //   _pageController.animateTo(0, duration: const Duration(milliseconds: 300), curve: Curves.ease);
-    //     // }
-    //   });
-    // }
+  }
+
+  String normalizeYoutubeUrl(String url) {
+    if (url.contains("youtu.be/")) {
+      final videoId = url.split("youtu.be/").last;
+      return "https://www.youtube.com/watch?v=$videoId";
+    } else if (url.contains("shorts/")) {
+      final videoId = url.split("shorts/").last.split("?").first;
+      return "https://www.youtube.com/watch?v=$videoId";
+    }
+    return url;
   }
 
   @override
@@ -136,7 +150,7 @@ class _HomeViewState extends State<HomeView> {
                         children: [
                           CachedNetworkImage(
                             // AppImages.banner,
-                            imageUrl: provider.homeModel.topBanner?.imageUrl ?? "",
+                            imageUrl: provider.homeModel?.topBanner?.imageUrl ?? "",
                             // alignment: Alignment(0.0, 10),
                             fit: BoxFit.cover,
                             width: constraints.maxWidth,
@@ -151,7 +165,7 @@ class _HomeViewState extends State<HomeView> {
                                 SizedBox(
                                   width: constraints.maxWidth,
                                   child: Text(
-                                    provider.homeModel.topBanner?.title ?? "",
+                                    provider.homeModel?.topBanner?.title ?? "",
                                     style: AppStyles.getRegularTextStyle(fontSize: 32, color: Colors.white).copyWith(height: 1.2),
                                   ),
                                 ),
@@ -210,64 +224,29 @@ class _HomeViewState extends State<HomeView> {
                         spacing: 16,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CustomHtmlWidget(htmlString: provider.homeModel.description ?? ""),
-                          if (provider.homeModel.descImage != null)
+                          CustomHtmlWidget(htmlString: provider.homeModel?.description ?? ""),
+                          if (provider.homeModel?.descImage != null)
                             ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: CachedNetworkImage(
-                                imageUrl: provider.homeModel.descImage!,
+                                imageUrl: provider.homeModel!.descImage!,
                                 fit: BoxFit.cover,
                                 width: double.infinity,
                                 height: constraints.maxHeight * 0.4,
                               ),
                             ),
-                          CustomHtmlWidget(htmlString: provider.homeModel.highlights ?? ""),
-                          // Text(AppStrings.homeTitle1, style: AppStyles.getSemiBoldTextStyle(fontSize: 28)),
-                          // Text(AppStrings.homeSubtitle1, style: AppStyles.getRegularTextStyle(fontSize: 14)),
-                          // const SizedBox(height: 24),
-                          // Text(AppStrings.homeTitle2, style: AppStyles.getMediumTextStyle(fontSize: 24)),
-                          // Text(AppStrings.homeSubtitle2, style: AppStyles.getRegularTextStyle(fontSize: 14)),
-                          // const SizedBox(height: 24),
-                          // getImage(AppImages.homeImage1),
-                          // getImage(AppImages.homeImage2, title: "Movement Principles"),
-                          // getImage(AppImages.homeImage3, title: "Athletic Reformer"),
-                          // getImage(AppImages.homeImage4, title: "Athletic Flow"),
-                          // if (homeJson['classes'] != null)
-                          //   ...List.generate(
-                          //     homeJson['classes'].length,
-                          //     (i) => getImage(
-                          //       homeJson['classes'][i]['imageUrl'],
-                          //       title: homeJson['classes'][i]['buttonTitle'],
-                          //       onTap: () => homeJson['classes'][i]['url'],
-                          //     ),
-                          //   ),
-                          if (provider.homeModel.showClasses == true)
-                            Text(provider.homeModel.classesTitle ?? "", style: AppStyles.getMediumTextStyle(fontSize: 24)),
+                          CustomHtmlWidget(htmlString: provider.homeModel?.highlights ?? ""),
+
+                          if (provider.homeModel?.showClasses == true)
+                            Text(provider.homeModel?.classesTitle ?? "", style: AppStyles.getMediumTextStyle(fontSize: 24)),
                         ],
                       ),
                     ),
                   ),
-                  if (provider.homeModel.showClasses == true && context.watch<ClassProvider>().classModel.classes!.isNotEmpty)
+                  if (provider.homeModel?.showClasses == true && context.watch<ClassProvider>().classModel.classes!.isNotEmpty)
                     SliverToBoxAdapter(
                       child: SizedBox(
                         height: constraints.maxHeight * 0.5,
-                        // child: ListView.separated(
-                        //   padding: kDefaultHorizontalPadding,
-                        //   itemCount: context.watch<ClassProvider>().classModel.classes!.length,
-                        //   scrollDirection: Axis.horizontal,
-                        //   separatorBuilder: (_, __) => const SizedBox(width: 8),
-                        //   itemBuilder:
-                        //       (context, index) => getImage(
-                        //         index: index,
-                        //         constraints: constraints,
-                        //         classModel: context.watch<ClassProvider>().classModel.classes![index],
-                        //         onTap:
-                        //             () => context.pushNamed(
-                        //               ClassDetailsView.route,
-                        //               pathParameters: {'id': context.read<ClassProvider>().classModel.classes![index].id.toString()},
-                        //             ),
-                        //       ),
-                        // ),
                         child: PageView.builder(
                           itemCount: context.watch<ClassProvider>().classModel.classes!.length,
                           scrollDirection: Axis.horizontal,
@@ -288,36 +267,37 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                               ),
                         ),
-                        // child: CarouselView(
-                        //   itemExtent: constraints.maxWidth * 2 / 3,
-                        //   shrinkExtent: constraints.maxWidth * 2 / 3,
-                        //   itemSnapping: true,
-                        //   children: List.generate(
-                        //     context.watch<ClassProvider>().classModel.classes!.length,
-                        //     (i) => getImage(
-                        //       index: i,
-                        //       constraints: constraints,
-                        //       classModel: context.watch<ClassProvider>().classModel.classes![i],
-                        //       onTap:
-                        //           () => context.pushNamed(
-                        //             ClassDetailsView.route,
-                        //             pathParameters: {'id': context.watch<ClassProvider>().classModel.classes![i].id.toString()},
-                        //           ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // child: FocusCarousel(
-                        //   controller: controller,
-                        //   itemExtent: constraints.maxWidth * 2 / 3,
-                        //   shrinkExtent: constraints.maxWidth * 2 / 3,
-                        //   items:
-                        //       context.watch<ClassProvider>().classModel.classes!.map((c) {
-                        //         return ClassContainer(
-                        //           classModel: c,
-                        //           onTap: () => context.pushNamed(ClassDetailsView.route, pathParameters: {'id': c.id.toString()}),
-                        //         );
-                        //       }).toList(),
-                        // ),
+                      ),
+                    ),
+                  if (_videoPlayerController != null)
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: kDefaultHorizontalPadding,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 24),
+                            Text(provider.homeModel?.youtubeUrl?.title ?? "", style: AppStyles.getMediumTextStyle(fontSize: 24)),
+                            SizedBox(height: 16),
+                            // PodVideoPlayer(
+                            //   controller: _videoPlayerController!,
+                            //   videoThumbnail:
+                            //       provider.homeModel?.youtubeUrl?.thumbnailUrl != null
+                            //           ? DecorationImage(
+                            //             image: CachedNetworkImageProvider(provider.homeModel?.youtubeUrl?.thumbnailUrl ?? ""),
+                            //             fit: BoxFit.cover,
+                            //           )
+                            //           : null,
+                            // ),
+                            YoutubePlayer(
+                              controller: _videoPlayerController!,
+                              showVideoProgressIndicator: true,
+                              progressIndicatorColor: Colors.amber,
+                              progressColors: const ProgressBarColors(playedColor: Colors.amber, handleColor: Colors.amberAccent),
+                              onReady: () {},
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   SliverToBoxAdapter(child: SizedBox(height: 20)),

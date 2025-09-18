@@ -68,24 +68,19 @@ class _TeamsViewState extends State<TeamsView> {
                         ),
                       ),
                     ),
-                    // const SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     if (provider.teamModel.members!.isNotEmpty)
-                      AspectRatio(
-                        aspectRatio: 3 / 4,
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
-
-                          child: ClipRRect(
-                            key: ValueKey(currentIndex.toString()),
-                            borderRadius: BorderRadius.circular(24),
-                            child: CachedNetworkImage(imageUrl: provider.teamModel.members![currentIndex].image ?? "", fit: BoxFit.cover),
-                          ),
-                        ),
-                      ),
-                    // const SizedBox(height: 30),
-                    Text(provider.teamModel.members![currentIndex].name ?? "", style: AppStyles.getSemiBoldTextStyle(fontSize: 24)),
-                    const SizedBox(height: 8),
-                    Text(provider.teamModel.members![currentIndex].desc ?? "", style: AppStyles.getRegularTextStyle(fontSize: 14)),
+                      if (MediaQuery.sizeOf(context).width > 600)
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(flex: 1, child: getImage(provider)),
+                            const SizedBox(width: 30),
+                            Expanded(flex: 2, child: getDetails(provider)),
+                          ],
+                        )
+                      else
+                        Column(children: [getImage(provider), const SizedBox(height: 30), getDetails(provider)]),
 
                     const SizedBox(height: 20),
                   ]),
@@ -94,6 +89,31 @@ class _TeamsViewState extends State<TeamsView> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  Column getDetails(HomeProvider provider) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(provider.teamModel.members![currentIndex].name ?? "", style: AppStyles.getSemiBoldTextStyle(fontSize: 24)),
+        const SizedBox(height: 8),
+        Text(provider.teamModel.members![currentIndex].desc ?? "", style: AppStyles.getRegularTextStyle(fontSize: 14)),
+      ],
+    );
+  }
+
+  AnimatedSwitcher getImage(HomeProvider provider) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: AspectRatio(
+        key: ValueKey(currentIndex.toString()),
+        aspectRatio: 3 / 4,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(24),
+          child: CachedNetworkImage(imageUrl: provider.teamModel.members![currentIndex].image ?? "", fit: BoxFit.cover),
+        ),
       ),
     );
   }

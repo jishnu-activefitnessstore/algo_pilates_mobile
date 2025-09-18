@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:algo_pilates/src/features/classes/presentation/class_listitng_view.dart';
 import 'package:algo_pilates/src/features/home/presentation/bookings_view.dart';
 import 'package:algo_pilates/src/features/home/presentation/contact_view.dart';
 import 'package:algo_pilates/src/features/home/presentation/pricing_view.dart';
@@ -50,10 +51,10 @@ class PlainNavBarState extends State<PlainNavBar> {
       iconSize: 23,
       elevation: 0,
       items: [
-        BottomNavigationBarItem(icon: getIcon(AppImages.team), label: "TEAM"),
-        BottomNavigationBarItem(icon: getIcon(AppImages.pricing), label: "PRICING"),
         BottomNavigationBarItem(icon: getIcon(AppImages.home), label: "HOME"),
-        BottomNavigationBarItem(icon: getIcon(AppImages.bookings), label: "BOOK NOW"),
+        BottomNavigationBarItem(icon: getIcon(AppImages.classSvg), label: "CLASSES"),
+        BottomNavigationBarItem(icon: getIcon(AppImages.pricing), label: "PRICING"),
+        BottomNavigationBarItem(icon: getIcon(AppImages.team), label: "TRAINERS"),
         BottomNavigationBarItem(icon: getIcon(AppImages.contact), label: "CONTACT"),
       ],
       currentIndex: getCurrentIndex(),
@@ -66,10 +67,10 @@ class PlainNavBarState extends State<PlainNavBar> {
   }
 
   int getCurrentIndex() => switch (widget.currentPath) {
-    TeamsView.route => 0,
-    PricingView.route => 1,
-    HomeView.route => 2,
-    BookingsView.route => 3,
+    HomeView.route => 0,
+    ClassListitngView.route => 1,
+    PricingView.route => 2,
+    TeamsView.route => 3,
     ContactView.route => 4,
     _ => 0,
   };
@@ -78,23 +79,23 @@ class PlainNavBarState extends State<PlainNavBar> {
     print("index $index");
     switch (index) {
       case 0:
-        if (widget.currentPath != TeamsView.route) {
-          context.pushNamed(TeamsView.route);
-        }
-        break;
-      case 1:
-        if (widget.currentPath != PricingView.route) {
-          context.pushNamed(PricingView.route);
-        }
-        break;
-      case 2:
         if (widget.currentPath != HomeView.route) {
           context.pushNamed(HomeView.route);
         }
         break;
+      case 1:
+        if (widget.currentPath != ClassListitngView.route) {
+          context.pushNamed(ClassListitngView.route);
+        }
+        break;
+      case 2:
+        if (widget.currentPath != PricingView.route) {
+          context.pushNamed(PricingView.route);
+        }
+        break;
       case 3:
-        if (widget.currentPath != BookingsView.route) {
-          context.pushNamed(BookingsView.route);
+        if (widget.currentPath != TeamsView.route) {
+          context.pushNamed(TeamsView.route);
         }
       case 4:
         if (widget.currentPath != ContactView.route) {

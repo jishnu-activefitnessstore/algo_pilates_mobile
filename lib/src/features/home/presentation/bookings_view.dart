@@ -1,7 +1,9 @@
 import 'package:algo_pilates/src/features/home/presentation/widget/bottom_nav_bar.dart';
+import 'package:algo_pilates/src/features/home/provider/home_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:provider/provider.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 import 'widget/custom_scaffold.dart';
@@ -108,7 +110,9 @@ class _BookingsViewState extends State<BookingsView> {
             key: webViewKey,
 
             // webViewEnvironment: webViewEnvironment,
-            initialUrlRequest: URLRequest(url: WebUri("https://app.glofox.com/portal/#/branch/67a1dab5e0c5726abe024ff1/classes-list-view")),
+            initialUrlRequest: URLRequest(
+              url: WebUri(context.watch<HomeProvider>().homeModel?.bookingUrl ?? "https://algopilates.com/pricing"),
+            ),
             initialSettings: settings,
             pullToRefreshController: pullToRefreshController,
             onWebViewCreated: (controller) {

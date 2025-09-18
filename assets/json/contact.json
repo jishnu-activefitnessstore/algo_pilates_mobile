@@ -1,0 +1,17 @@
+{
+  "title": "Let’s Connect",
+  "description": "<p>Have questions or want to book your next Pilates session? We’re here to guide you toward balance, strength, and well-being.</p>",
+  "phone": "+971 50 314 5585",
+  "email": "info@algopilates.com",
+  "address": "Algo Pilates, Mezzanine Floor,\nJunction Mall DIP, Dubai.",
+  "whatsapp": {
+    "title": "Chat with Us on WhatsApp",
+    "description": "<p>Have questions about our Pilates classes or schedule? Send us a message on WhatsApp and we’ll respond as soon as possible.</p>",
+    "button_title": "Chat on WhatsApp",
+    "whatsapp_no": "971503145585"
+  },
+  "latitude": 24.995359108021272,
+  "longitude": 55.15467774233032,
+  "map_url":"https://maps.app.goo.gl/5vchwi9KRNmNhw2h8",
+  "map_image":"https://algopilates.com/assets/image/map-image.jpg"
+}

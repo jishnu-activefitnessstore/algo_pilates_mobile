@@ -5,6 +5,10 @@ class ContactModel {
   String? email;
   String? address;
   Whatsapp? whatsapp;
+  double? lat;
+  double? long;
+  String? mapUrl;
+  String? mapImage;
 
   ContactModel({this.title, this.description, this.phone, this.email, this.address, this.whatsapp});
 
@@ -15,6 +19,10 @@ class ContactModel {
     email = json['email'];
     address = json['address'];
     whatsapp = json['whatsapp'] != null ? Whatsapp.fromJson(json['whatsapp']) : null;
+    lat = json['latitude'];
+    long = json['longitude'];
+    mapUrl = json['map_url'];
+    mapImage = json['map_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -27,6 +35,9 @@ class ContactModel {
     if (whatsapp != null) {
       data['whatsapp'] = whatsapp!.toJson();
     }
+    data['latitude'] = lat;
+    data['longitude'] = long;
+
     return data;
   }
 }

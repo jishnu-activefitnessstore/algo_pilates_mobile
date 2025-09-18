@@ -51,7 +51,7 @@ class _ClassDetailsViewState extends State<ClassDetailsView> {
                     constraints: BoxConstraints(minHeight: MediaQuery.sizeOf(context).width * 0.5, maxWidth: double.maxFinite),
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: CachedNetworkImageProvider(context.watch<HomeProvider>().homeModel.topBanner?.imageUrl ?? ""),
+                        image: CachedNetworkImageProvider(classModel.banner ?? ""),
                         fit: BoxFit.cover,
                         alignment: Alignment(0, -0.5),
                       ),

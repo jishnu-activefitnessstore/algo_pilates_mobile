@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:algo_pilates/src/features/classes/provider/class_provider.dart';
 import 'package:algo_pilates/src/features/home/models/contact_model.dart';
 import 'package:algo_pilates/src/features/home/models/home_model.dart';
@@ -6,6 +9,7 @@ import 'package:algo_pilates/src/features/home/models/team_model.dart';
 import 'package:algo_pilates/src/services/api_services.dart';
 import 'package:algo_pilates/src/services/route_services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class HomeProvider extends ChangeNotifier {
@@ -17,8 +21,8 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  late HomeModel _homeModel;
-  HomeModel get homeModel => _homeModel;
+  HomeModel? _homeModel;
+  HomeModel? get homeModel => _homeModel;
 
   late ContactModel _contactModel;
   ContactModel get contactModel => _contactModel;
@@ -35,6 +39,8 @@ class HomeProvider extends ChangeNotifier {
     putLoading(true);
     List<Future> futures = [
       _apiServices.getJsonFromUrl("home"),
+      // getRootbundleHome(),
+      // getRootbundleContact(),
       _apiServices.getJsonFromUrl("contact"),
       _apiServices.getJsonFromUrl("pricing"),
       _apiServices.getJsonFromUrl("teams"),
@@ -45,7 +51,19 @@ class HomeProvider extends ChangeNotifier {
     _contactModel = ContactModel.fromJson(result[1]);
     _pricingModel = PricingModel.fromJson(result[2]);
     _teamModel = TeamModel.fromJson(result[3]);
-
+    log(jsonEncode(result[0]));
     putLoading(false);
+  }
+
+  getRootbundleHome() async {
+    final String response = await rootBundle.loadString('assets/json/home.json');
+    final Map<String, dynamic> decoded = jsonDecode(response);
+    return decoded;
+  }
+
+  getRootbundleContact() async {
+    final String response = await rootBundle.loadString('assets/json/contact.json');
+    final Map<String, dynamic> decoded = jsonDecode(response);
+    return decoded;
   }
 }
